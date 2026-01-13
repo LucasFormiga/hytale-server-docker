@@ -1,0 +1,26 @@
+services:
+  hytale:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hytale-server
+    restart: unless-stopped
+    ports:
+      - "5520:5520/udp"
+    volumes:
+      - ./hytale-data:/hytale/data
+    environment:
+      # JVM Options (e.g., -Xmx8G for more memory)
+      - HYTALE_OPTS=-Xmx4G -Xms2G
+      # Address to bind the server to
+      - BIND_ADDRESS=0.0.0.0
+      # Set to false to enable Sentry telemetry
+      - DISABLE_SENTRY=true
+      # Set to true to disable AOT cache
+      - DISABLE_AOT=false
+      # Set to true to force update server files on startup
+      - FORCE_UPDATE=false
+      # Any additional server arguments
+      - SERVER_ARGS=
+    stdin_open: true # Equivalent to -i
+    tty: true        # Equivalent to -t
