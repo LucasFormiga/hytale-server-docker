@@ -24,7 +24,7 @@ This repository provides a production-ready Docker image for running a Hytale Pr
    ```yaml
    services:
      hytale:
-       image: your-dockerhub-username/hytale-server:latest # Replace with your actual image name
+       image: lucasformiga/hytale-server-docker:latest
        container_name: hytale-server
        restart: unless-stopped
        ports:
